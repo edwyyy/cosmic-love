@@ -32,3 +32,8 @@ You can easily edit text, names, photos, and music inside it.
 ---
 
 **Made with ❤️ by edwyyy** – *If you like it, give it a star on GitHub!* ⭐
+
+<p float="right">
+  <img src="media/ss1.jpg" width="361" />
+  <img src="media/ss2.jpg" width="400" />
+</p>

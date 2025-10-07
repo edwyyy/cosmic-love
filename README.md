@@ -37,4 +37,4 @@ You can easily edit text, names, photos, and music inside it.
   <img src="media/ss1.jpg" width="361" />
   <img src="media/ss2.jpg" width="400" />
 </p>
- this project uses [three.js] (https://threejs.org) under the MIT license, parts of this project were done using AI- assisted tools. Rest of the customization, css styling, html layout and added features are done by original author @edwyyy/edwindaavis
+ this project is built with [three.js] (https://threejs.org), parts of this project were done using AI- assisted tools. Rest of the customization, css styling, html layout and added features are done by original author @edwyyy/edwindaavis

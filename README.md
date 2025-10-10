@@ -1,4 +1,4 @@
-#Project: Cosmic Love
+# Project: Cosmic Love
 
 ### 💡 Project Idea:
 **_Cosmic Love_** lets you store your favorite memories as glowing stars in a 3D galaxy.  

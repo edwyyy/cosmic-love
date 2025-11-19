@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday 🎂✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -12,7 +14,7 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
             background: #000;
         }
@@ -50,6 +52,7 @@
 
         .lock-title {
             font-size: 3em;
+            
             margin-bottom: 10px;
             background: linear-gradient(45deg, #ff6ec7, #b388ff, #64b5f6);
             -webkit-background-clip: text;
@@ -165,6 +168,7 @@
         }
 
         #birthdayMessage {
+            font-family:  'Playfair Display', serif;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -190,6 +194,7 @@
         }
 
         .birthday-title {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.8em;
             color: #ff6ec7;
             margin-bottom: 15px;
@@ -218,6 +223,7 @@
         }
 
         #controls {
+            font-family: 'Poppins', sans-serif;
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -240,7 +246,8 @@
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             transition: all 0.3s;
             font-size: 0.9em;
         }
@@ -249,6 +256,17 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(255, 110, 199, 0.5);
         }
+
+        #controls button.music-playing {
+            background: linear-gradient(45deg, #64b5f6, #b388ff);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+           0%, 100% { transform: scale(1); }
+           50% { transform: scale(1.05); }
+        }
+
 
         .error {
             color: #ff6ec7;
@@ -263,57 +281,6 @@
             75% { transform: translateX(10px); }
         }
 
-        #wishButton {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #ffd700, #ff6ec7);
-            border: none;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            z-index: 100;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        #wishButton:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        }
-
-        #musicButton {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: linear-gradient(45deg, #64b5f6, #b388ff);
-            border: none;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            z-index: 100;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #musicButton:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(100, 181, 246, 0.8);
-        }
-
-        #musicButton.playing {
-            background: linear-gradient(45deg, #ff6ec7, #ffd700);
-            animation: pulse 2s infinite;
-        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -341,6 +308,7 @@
         }
 
         #info {
+            font-family: 'Poppins', sans-serif;
             position: fixed;
             top: 20px;
             left: 20px;
@@ -352,13 +320,128 @@
             max-width: 600px;
             backdrop-filter: blur(10px);
             z-index: 100;
+            transition: opacity 0.5s, transform 0.5s;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        #info.hidden {
+            opacity: 0;
+            transform: translateX(-100%);
+            pointer-events: none; 
         }
 
         #info h2 {
             color: #ff6ec7;
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 10px;
             font-size: 1.2em;
         }
+        
+        .control-tooltip {
+            position: fixed;
+            left: 80px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            border: 1px solid rgba(179, 136, 255, 0.5);
+            z-index: 98;
+       }
+
+         .control-tooltip.show {
+          opacity: 1;
+        } 
+
+
+
+        #info p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+         #infoIcon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6ec7, #b388ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.3s;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(255, 110, 199, 0.5);
+        }
+
+        #infoIcon.visible {
+             opacity: 1;
+             pointer-events: all;
+         }
+
+         #infoIcon:hover {
+             transform: scale(1.1);
+             box-shadow: 0 0 30px rgba(255, 110, 199, 0.8);
+        }
+
+        #infoIcon span {
+           font-size: 1.5em;
+           color: #fff;
+    }
+
+
+
+       .control-icons {
+         position: fixed;
+         top: 90px;
+         left: 20px;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         z-index: 99;
+        }
+
+        .control-icon {
+         width: 50px;
+         height: 50px;
+         background: rgba(179, 136, 255, 0.3);
+         border: 2px solid rgba(179, 136, 255, 0.5);
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+         transition: all 0.3s;
+         backdrop-filter: blur(10px);
+        }
+
+        .control-icon:hover {
+          background: rgba(179, 136, 255, 0.6);
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(179, 136, 255, 0.5);
+        }
+
+        .control-icon.active {
+          background: linear-gradient(135deg, #ff6ec7, #b388ff);
+          border-color: #ff6ec7;
+          box-shadow: 0 0 20px rgba(255, 110, 199, 0.8);
+        }
+
+        .control-icon span {
+          font-size: 1.3em;
+        }
+
+        
 
         .firework {
             position: fixed;
@@ -366,27 +449,6 @@
             z-index: 999;
         }
 
-        #volumeControl {
-            position: fixed;
-            top: 140px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 20px;
-            border: 1px solid rgba(179, 136, 255, 0.3);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: none;
-        }
-
-        #volumeControl.show {
-            display: block;
-        }
-
-        #volumeSlider {
-            width: 100px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -406,45 +468,52 @@
     <div id="starTooltip"></div>
 
     <div id="birthdayMessage">
-        <h2 class="birthday-title"> Happy B'day Hooman 😽 💖</h2>
+        <h2 class="birthday-title"> Happy B'day Hello kitty 🐱</h2>
         <p class="birthday-text">
-            ✨ Today is a very very veryyyy special day - it's the day my pookie was born! 🥳
+            Today is a very special day - it's the day my pookie was born! 
+    
+            I made this little cosmic universe just for you, - filled with stars that tell our story. 
             <br>
-            I made this little cosmic universe just for you, filled with stars that tell our story. 🌌
             <br>
-            This is my small gift for you,
-            <br>
-            ⭐ MY COSMIC LOVE 💖 ⭐
+             MY COSMIC LOVE 
         </p>
     </div>
-
-    <button id="wishButton" onclick="showBirthdayWish()">Birthday Wish</button>
     
-    <button id="musicButton" onclick="toggleMusic()">
-        <span id="musicIcon">🎵</span>
-        <span id="musicText">Play Music</span>
-    </button>
 
-    <div id="volumeControl">
-        <label style="color: #fff; font-size: 0.9em;">Volume: </label>
-        <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="changeVolume(this.value)">
+    <div id="infoIcon" onclick="toggleInfo()">
+    <span>ℹ️</span>
     </div>
 
     <div id="info">
-        <h2>🌟 Navigate the Cosmos</h2>
+        <h2>> Navigate the Cosmos</h2>
         <p style="opacity: 0.9; margin-top: 10px; line-height: 1.4;">
             🖱️ <strong>Click & Drag:</strong> Rotate the universe<br>
             🔍 <strong>Scroll:</strong> Zoom in/out<br>
             ✨ <strong>Hover:</strong> Discover special stars<br>
-            💖 Special stars glow brighter!
+            💖 Special stars glow brighter!<br>
+            👀 <strong>Use pc/laptop for best experience</strong>
+
         </p>
     </div>
 
-    <div id="controls">
-        <button onclick="resetView()">🔄 Reset</button>
-        <button onclick="toggleAutoRotate()">⏯️ Auto-Rotate</button>
-        <button onclick="createFireworks()">🎆 Fireworks</button>
+    <div class="control-icons">
+    <div class="control-icon" onclick="resetView()" title="Reset View">
+        <span>🔄</span>
+        <div class="control-tooltip" id="resetTooltip" style="top: 90px;">Visual Reset</div>
     </div>
+    <div class="control-icon active" id="autoRotateIcon" onclick="toggleAutoRotate()" title="Auto-Rotate">
+        <span>⏯️</span>
+        <div class="control-tooltip" id="rotateTooltip" style="top: 150px;">Auto-Rotation</div>
+    </div>
+    </div>
+
+    <div id="controls">
+    <button onclick="createFireworks()">Fireworks</button>
+    <button onclick="showBirthdayWish()">Birthday Wish</button>
+    <button onclick="toggleMusic()">Music</button>
+</div>
+
+<!-- Audio element for background music -->
 
     <!-- Audio element for background music -->
     <audio id="backgroundMusic" loop>
@@ -463,14 +532,37 @@
         const tooltip = document.getElementById('starTooltip');
         const birthdayMsg = document.getElementById('birthdayMessage');
         const backgroundMusic = document.getElementById('backgroundMusic');
-        const musicButton = document.getElementById('musicButton');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicText = document.getElementById('musicText');
-        const volumeControl = document.getElementById('volumeControl');
-        const volumeSlider = document.getElementById('volumeSlider');
+        const infoPanel =document.getElementById('info');  // ADD THIS
+        const infoIcon = document.getElementById('infoIcon');  // ADD THIS
 
         // Set initial volume
         backgroundMusic.volume = 0.5;
+
+        // Auto-hide info panel after 5 seconds
+        let infoTimeout;
+        function startInfoTimeout()
+        {
+         infoTimeout = setTimeout(() => {
+         infoPanel.classList.add('hidden');
+         setTimeout(() => { infoIcon.classList.add('visible'); }, 500);}, 5000);
+        } 
+        
+        function toggleInfo() 
+        {
+         if (infoPanel.classList.contains('hidden'))
+         {
+          infoPanel.classList.remove('hidden');
+          infoIcon.classList.remove('visible');
+          clearTimeout(infoTimeout);
+          startInfoTimeout();
+         } 
+         else 
+         {
+          infoPanel.classList.add('hidden');
+          setTimeout(() => { infoIcon.classList.add('visible'); }, 500);
+         }
+        }
+ 
 
         passkeyInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -484,11 +576,13 @@
                 setTimeout(() => {
                     lockScreen.style.display = 'none';
                     initCosmos();
+                    initMobileControls();
+                    startInfoTimeout();
+
                     // Try to autoplay music
                     playMusic();
                     setTimeout(() => {
                         birthdayMsg.classList.add('show');
-                        createFireworks();
                         setTimeout(() => {
                             birthdayMsg.classList.remove('show');
                         }, 6000);
@@ -508,41 +602,33 @@
         function playMusic() {
             backgroundMusic.currentTime = 24;
             backgroundMusic.play().then(() => {
-                musicButton.classList.add('playing');
-                musicIcon.textContent = '🎶';
-                musicText.textContent = 'Pause Music';
-                volumeControl.classList.add('show');
                 createMusicNotes();
             }).catch(error => {
                 console.log('Music autoplay was prevented:', error);
-                // If autoplay fails, update button to let user start manually
-                musicIcon.textContent = '🎵';
-                musicText.textContent = 'Play Music';
             });
         }
 
         function pauseMusic() {
             backgroundMusic.pause();
-            musicButton.classList.remove('playing');
-            musicIcon.textContent = '🎵';
-            musicText.textContent = 'Play Music';
         }
 
         function toggleMusic() {
-            if (backgroundMusic.paused) {
-                playMusic();
-            } else {
-                pauseMusic();
-            }
+        const musicBtn = document.querySelector('#controls button:last-child');
+        if (backgroundMusic.paused) {
+        playMusic();
+        musicBtn.classList.add('music-playing');
+        musicBtn.innerHTML = 'Music ⏸';
+        } 
+         else{
+        pauseMusic();
+        musicBtn.classList.remove('music-playing');
+        musicBtn.innerHTML = 'Music ▶';
         }
-
-        function changeVolume(value) {
-            backgroundMusic.volume = value / 100;
         }
 
         function createMusicNotes() {
             const notes = ['🎵', '🎶', '♪', '♫'];
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     const note = document.createElement('div');
                     note.className = 'music-note';
@@ -558,7 +644,6 @@
 
         function showBirthdayWish() {
             birthdayMsg.classList.add('show');
-            createFireworks();
             setTimeout(() => {
                 birthdayMsg.classList.remove('show');
             }, 5000);
@@ -575,7 +660,7 @@
             {
                 name: "Your Birthday Star",
                 date: "Oct 5, 2004",
-                message: "The day a cutie pie was born. 💖",
+                message: "The day my cutie pie born. 💖",
                 color: 0xff6ec7,
                 position: { x: 15, y: 8, z: 5 },
                 photoText:'<img src="media/her_photo.jpeg" style="width:100%; height:150px; object-fit:cover; border-radius:10px;">'
@@ -583,7 +668,7 @@
             {
                 name: "My Birthday Star",
                 date: "April 10, 2004",
-                message: "The day i born 💫",
+                message: "The day batman born! 🦇",
                 color: 0xb388ff,
                 position: { x: -15, y: -5, z: 8 },
                 photoText:'<img src="media/his_photo.jpeg" style="width:100%; height:150px; object-fit:cover; border-radius:10px;">'
@@ -591,7 +676,7 @@
             {
                 name: "Our Story Began 💑",
                 date: "June 27, 2023",
-                message: "This is where our forever started. The day I fell in love with you! 💕",
+                message: "This is where our forever started. The day I fell in love with you! ",
                 color: 0xffd700,
                 position: { x: 5, y: -10, z: -12 },
                 photoText:'<img src="media/our_photo.jpeg" style="width:100%; height:150px; object-fit:cover; border-radius:10px;">'
@@ -599,7 +684,7 @@
             {
                 name: "First Date Memory",
                 date: "Remember this?",
-                message: "Our first date... ahh its been a while now 🥰",
+                message: "Our first date...in gym together 🥰",
                 color: 0x64b5f6,
                 position: { x: -8, y: 12, z: -8 },
                 photoText:'<img src="media/first_date.jpeg" style="width:100%; height:150px; object-fit:cover; border-radius:10px;">'
@@ -830,14 +915,38 @@
             tooltip.classList.remove('visible');
         }
 
-        function resetView() {
-            scene.rotation.set(0, 0, 0);
-            camera.position.z = 30;
-        }
+        function resetView() 
+    {
+          scene.rotation.set(0, 0, 0);
+          camera.position.z = 30;
+    
+        // Show tooltip
+        const tooltip = document.getElementById('resetTooltip');
+        tooltip.classList.add('show');
+        setTimeout(() => {
+        tooltip.classList.remove('show');
+        }, 1500);
+     }
 
         function toggleAutoRotate() {
-            autoRotate = !autoRotate;
-        }
+           autoRotate = !autoRotate;
+           const icon = document.getElementById('autoRotateIcon');
+           const tooltip = document.getElementById('rotateTooltip');
+    
+        if (autoRotate) {
+            icon.classList.add('active');
+            tooltip.textContent = 'Auto-Rotation ON';
+           } else {
+           icon.classList.remove('active');
+           tooltip.textContent = 'Auto-Rotation OFF';
+           }
+    
+        // Show tooltip
+          tooltip.classList.add('show');
+          setTimeout(() => {
+          tooltip.classList.remove('show');
+          }, 1500);
+          }
 
         function createFireworks() {
             for (let i = 0; i < 5; i++) {
@@ -846,7 +955,7 @@
                     firework.className = 'firework';
                     firework.style.left = Math.random() * window.innerWidth + 'px';
                     firework.style.top = Math.random() * window.innerHeight * 0.5 + 'px';
-                    firework.textContent = ['🎆', '✨', '🎉', '💖', '🌟'][Math.floor(Math.random() * 5)];
+                    firework.textContent = ['🎆', '🎊', '🎉', '❤️', '✨'][Math.floor(Math.random() * 5)];
                     firework.style.fontSize = '3em';
                     document.body.appendChild(firework);
                     
@@ -855,6 +964,8 @@
             }
         }
     </script>
+
+    <script src="mobile-controls.js"></script>
+
 </body>
 </html>
-
